@@ -1,14 +1,26 @@
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
-export default function TodoListCategory({ icon, text }) {
+export default function TodoListCategory({
+  icon,
+  text,
+  setCurrentCategory,
+  currentCategory,
+}) {
+  const containerImg = classNames(
+    "w-[51px] h-[51px] border p-2 shadow rounded-md bg-white",
+    {
+      "border border-blue-500 shadow-blue-500": text == currentCategory,
+    }
+  );
+
   return (
-    <button className="grid place items-center cursor-pointer">
-      <img
-        src={icon}
-        alt=""
-        className="w-[51px] h-[51px] border p-2 shadow rounded-md"
-      />
-      <p className="mt-2">{text}</p>
+    <button
+      className="grid place-items-center cursor-pointer"
+      onClick={() => setCurrentCategory(text)}
+    >
+      <img src={icon} alt="" className={containerImg} />
+      <p className="mt-2 text-gray-400 font-normal">{text}</p>
     </button>
   );
 }
@@ -16,4 +28,6 @@ export default function TodoListCategory({ icon, text }) {
 TodoListCategory.propTypes = {
   icon: PropTypes.string,
   text: PropTypes.string,
+  setCurrentCategory: PropTypes.func,
+  currentCategory: PropTypes.string,
 };
