@@ -8,9 +8,9 @@ export default function TodoListCategory({
   currentCategory,
 }) {
   const containerImg = classNames(
-    "w-[51px] h-[51px] border p-2 shadow rounded-md bg-white",
+    "w-[51px] h-[51px] p-2 shadow rounded-md bg-white",
     {
-      "border border-blue-500 shadow-blue-500": text == currentCategory,
+      "border border-blue-500 shadow-blue-500": text === currentCategory,
     }
   );
 
@@ -20,7 +20,7 @@ export default function TodoListCategory({
       onClick={() => setCurrentCategory(text)}
     >
       <img src={icon} alt="" className={containerImg} />
-      <p className="mt-2 text-gray-400 font-normal">{text}</p>
+      <p className="mt-2 text-gray-400">{text}</p>
     </button>
   );
 }
